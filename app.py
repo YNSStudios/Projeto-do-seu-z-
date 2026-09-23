@@ -14,7 +14,7 @@ def verificaçao_numero():
 
     while True:
 
-        valor = input("\033[33mDigite aqui:\033[0m ")
+        valor = input("\033[33mDigite aqui:\033[0m ").replace(",", ".")
 
         try:
             valor = float(valor)
@@ -22,10 +22,26 @@ def verificaçao_numero():
         except ValueError:
             print("\033[31mIsso não é um número !\033[0m")
 
+def codigo_cadastro():
+
+    while True:
+
+        codigo = random.randint(1000, 9999)
+
+        codigo_encontrado = None
+
+        for devedor in devedores:
+            if devedor['codigo'] == codigo:
+                codigo_encontrado = devedor
+                break
+
+        if codigo_encontrado is None:
+            return codigo
+            
 
 print("========================")
 print()
-print("[1] Cria divida/devedor")
+print("[1] Cria divida/devedor.")
 print()
 
 escolha = verificaçao_numero()
@@ -76,14 +92,19 @@ if escolha == 1:
         else:
             print("\033[31mOpção inválida !\033[0m")
 
+    codigo = codigo_cadastro()
+
     devedores.append(
         {
             "nome": nome,
             "divida": divida,
             "credibilidade": credibilidade,
             "credito": credito,
+            "codigo": codigo
         }
     )
 
-    with open("devedores.json", "r", encoding="utf-8") as dividas:
-        json.dump(devedores, dividas, ensure_ascii=False, indent=4)
+    with open("devedores.json", "w", encoding="utf-8") as dividas:
+        json.dump(devedores, dividas, ensure_ascii=False, indent=5)
+
+    print("\033[32mDevedor cadastrado com sucesso !\033[0m")

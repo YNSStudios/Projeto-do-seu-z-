@@ -1,3 +1,9 @@
 [
-    
+     {
+          "nome": "João Da Silva",
+          "divida": 180.0,
+          "credibilidade": "\u001b[32mCliente de confiança\u001b[0m",
+          "credito": 250,
+          "codigo": 8253
+     }
 ]
