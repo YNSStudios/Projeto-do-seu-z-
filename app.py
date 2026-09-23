@@ -15,12 +15,14 @@ def verificaçao_numero():
     while True:
 
         valor = input("\033[33mDigite aqui:\033[0m ").replace(",", ".")
+        print()
 
         try:
             valor = float(valor)
             return valor
         except ValueError:
             print("\033[31mIsso não é um número !\033[0m")
+
 
 def codigo_cadastro():
 
@@ -31,13 +33,34 @@ def codigo_cadastro():
         codigo_encontrado = None
 
         for devedor in devedores:
-            if devedor['codigo'] == codigo:
+            if devedor["codigo"] == codigo:
                 codigo_encontrado = devedor
                 break
 
         if codigo_encontrado is None:
             return codigo
-            
+
+
+def verificação_codigo():
+
+    while True:
+
+        codigo = int(verificaçao_numero())
+        print()
+
+        codigo_encontrado = None
+
+        for devedor in devedores:
+            if devedor["codigo"] == codigo:
+                codigo_encontrado = devedor
+                break
+
+        if codigo_encontrado is not None:
+            return codigo_encontrado
+        else:
+            print("\033[31mDevedor não encontrado !\033[0m")
+            print()
+
 
 print("========================")
 print()
@@ -68,8 +91,10 @@ if escolha == 1:
         print("[2] Cliente novo.")
         print()
         print("[3] Cliente de confiança.")
+        print()
 
         status = verificaçao_numero()
+        print()
 
         if status == 1:
 
@@ -91,6 +116,7 @@ if escolha == 1:
 
         else:
             print("\033[31mOpção inválida !\033[0m")
+            print()
 
     codigo = codigo_cadastro()
 
@@ -100,7 +126,7 @@ if escolha == 1:
             "divida": divida,
             "credibilidade": credibilidade,
             "credito": credito,
-            "codigo": codigo
+            "codigo": codigo,
         }
     )
 
@@ -108,3 +134,25 @@ if escolha == 1:
         json.dump(devedores, dividas, ensure_ascii=False, indent=5)
 
     print("\033[32mDevedor cadastrado com sucesso !\033[0m")
+    print()
+
+elif escolha == 2:
+
+    print("\033[33mRemoção/Quitação de divida.\033[0m")
+    print()
+
+    for devedor in devedores:
+        print(f"Nome: {devedor['nome']}")
+        print(f"Codigo: {devedor['codigo']}")
+        print(f"Divida: {devedor['divida']}")
+        print()
+
+    remover_devedor = verificação_codigo()
+
+    devedores.remove(remover_devedor)
+
+    with open("devedores.json", "w", encoding="utf-8") as dividas:
+        json.dump(devedores, dividas, ensure_ascii=False, indent=5)
+
+    print("\033[32mDivida removida/quitada com sucesso.\033[0m")
+    print()
