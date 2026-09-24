@@ -66,6 +66,10 @@ print("========================")
 print()
 print("[1] Cria divida/devedor.")
 print()
+print("[2] Remover/quitar divida.")
+print()
+print("[3] Vizualizar devedores.")
+print()
 
 escolha = verificaçao_numero()
 print()
@@ -156,3 +160,15 @@ elif escolha == 2:
 
     print("\033[32mDivida removida/quitada com sucesso.\033[0m")
     print()
+
+elif escolha == 3:
+
+    print("\033[33mVisualizar devedores.\033[0m")
+    print()
+
+    for devedor in devedores:
+        print("==========================")
+        print(f"Nome: {devedor['nome']}.")
+        print(f"Divida: \033[31mR${devedor['divida']}.\033[0m")
+        print(f"Credibilidade: {devedor['credibilidade']}.")
+        print()
