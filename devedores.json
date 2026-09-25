@@ -1,9 +1,23 @@
 [
      {
           "nome": "João Da Silva",
-          "divida": 150.0,
+          "divida": 257.0,
           "credibilidade": "\u001b[32mCliente de confiança\u001b[0m",
           "credito": 250,
           "codigo": 8253
+     },
+     {
+          "nome": "João Da Silva, Casa 32",
+          "divida": 212.03,
+          "credibilidade": "\u001b[33mCliente novato\u001b[0m",
+          "credito": 150,
+          "codigo": 5320
+     },
+     {
+          "nome": "Yuri Souza",
+          "divida": 160.25,
+          "credibilidade": "\u001b[33mCliente novato\u001b[0m",
+          "credito": 150,
+          "codigo": 6514
      }
 ]
